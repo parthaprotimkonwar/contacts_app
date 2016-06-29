@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.category.CategoriesActivityFragment"
+    tools:showIn="@layout/activity_categories">
+
+
+    <!--<GridView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/categoriesGridView"
+        android:stretchMode="spacingWidthUniform"
+        android:gravity="center_horizontal"
+        android:background="@android:color/darker_gray"
+        android:numColumns="auto_fit"
+        android:layout_margin="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
+        android:columnWidth="120dp"
+        />-->
+
+    <GridView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/categoriesGridView"
+        android:stretchMode="spacingWidthUniform"
+        android:gravity="center_horizontal"
+        android:numColumns="auto_fit"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="10dp"
+        android:columnWidth="120dp"
+        />
+
+
+</RelativeLayout>
