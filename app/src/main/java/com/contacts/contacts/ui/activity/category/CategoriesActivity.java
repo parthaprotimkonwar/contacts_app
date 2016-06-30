@@ -1,17 +1,26 @@
 package com.contacts.contacts.ui.activity.category;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.contacts.contacts.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CategoriesActivity extends AppCompatActivity {
 
@@ -19,13 +28,19 @@ public class CategoriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //full screen
+        //removing the action bar
         requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_categories);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.categoriesToolbar);
         setSupportActionBar(toolbar);
+
+        Typeface pacificoFont = Typeface.createFromAsset(getAssets(),"fonts/Pacifico.ttf");
+
+        TextView titleText = (TextView) toolbar.getChildAt(0);
+        titleText.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.logo_font_size));
+        titleText.setTypeface(pacificoFont);
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +56,20 @@ public class CategoriesActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_categories, menu);
+
+        MenuItem item = menu.findItem(R.id.categoriesMenuLocationNameSpinner);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+
+
+        List<String> locations = new ArrayList<>();
+        locations.add("bangalore");
+        locations.add("pune");
+        locations.add("hydrabad");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter); // set the adapter to provide layout of rows and content
+        //spinner.setOnItemSelectedListener(onItemSelectedListener);
         return true;
     }
 
@@ -52,9 +81,9 @@ public class CategoriesActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

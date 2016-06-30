@@ -2,12 +2,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/darker_gray"
+
     android:paddingTop="1dp"
     android:paddingBottom="1dp"
     android:paddingLeft="1dp"
     android:paddingRight="1dp">
 
+    <!--//android:background="@android:color/darker_gray"-->
     <ImageView
         android:layout_width="120dip"
         android:layout_height="120dip"

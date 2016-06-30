@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.Spinner;
 
 import com.contacts.contacts.R;
 import com.contacts.contacts.ui.adapter.category.CategoryListAdapter;
@@ -71,14 +73,6 @@ public class CategoriesActivityFragment extends Fragment {
 
         GridView gridView = (GridView) getView().findViewById(R.id.categoriesGridView);
         gridView.setAdapter(coursesListAdapter);
-
-        /*gridView.setOnItemClickListener();ClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ContactsActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

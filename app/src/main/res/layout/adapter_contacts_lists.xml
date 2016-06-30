@@ -62,7 +62,7 @@
     <ImageView
         android:layout_width="50dip"
         android:layout_height="50dip"
-        android:id="@+id/phoneIconImageView"
+        android:id="@+id/contactsPhoneIconImageView"
         android:src="@drawable/phone"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"

@@ -22,6 +22,11 @@
         android:columnWidth="120dp"
         />-->
 
+    <!--<Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/categoriesLocationNameSpinner" />-->
+
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,6 +40,5 @@
         android:verticalSpacing="10dp"
         android:columnWidth="120dp"
         />
-
 
 </RelativeLayout>
