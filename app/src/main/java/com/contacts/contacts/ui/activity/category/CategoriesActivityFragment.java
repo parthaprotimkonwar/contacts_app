@@ -33,20 +33,27 @@ public class CategoriesActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         categoriesBeen = new ArrayList<>();
-        CategoriesBean categoriesBean1 = new CategoriesBean(R.drawable.category_babies_160, "Babies");
-        CategoriesBean categoriesBean2 = new CategoriesBean(R.drawable.category_other_160, "Other");
-        CategoriesBean categoriesBean3 = new CategoriesBean(R.drawable.code_160x160, "Code");
-        CategoriesBean categoriesBean4 = new CategoriesBean(R.drawable.dragon_160x160, "Dragon");
+        CategoriesBean categoriesBean1 = new CategoriesBean(R.drawable.icon_appliances, "Applicances");
+        CategoriesBean categoriesBean2 = new CategoriesBean(R.drawable.icon_books, "Books");
+        CategoriesBean categoriesBean3 = new CategoriesBean(R.drawable.icon_clothing, "Clothing");
+        CategoriesBean categoriesBean4 = new CategoriesBean(R.drawable.icon_electronics, "Electronics");
 
-        CategoriesBean categoriesBean5 = new CategoriesBean(R.drawable.category_babies_160, "Babies");
-        CategoriesBean categoriesBean6 = new CategoriesBean(R.drawable.category_other_160, "Other");
-        CategoriesBean categoriesBean7 = new CategoriesBean(R.drawable.code_160x160, "Code");
-        CategoriesBean categoriesBean8 = new CategoriesBean(R.drawable.dragon_160x160, "Dragon");
+        CategoriesBean categoriesBean5 = new CategoriesBean(R.drawable.icon_furniture, "Furniture");
+        CategoriesBean categoriesBean6 = new CategoriesBean(R.drawable.icon_health, "Health");
+        CategoriesBean categoriesBean7 = new CategoriesBean(R.drawable.icon_books, "Books");
+        //CategoriesBean categoriesBean7 = new CategoriesBean(R.drawable.icon_jewellery, "Jewellery");
+        CategoriesBean categoriesBean8 = new CategoriesBean(R.drawable.icon_sports, "Sports");
 
-        CategoriesBean categoriesBean9 = new CategoriesBean(R.drawable.category_babies_160, "Babies");
-        CategoriesBean categoriesBean10 = new CategoriesBean(R.drawable.category_other_160, "Other");
-        CategoriesBean categoriesBean11 = new CategoriesBean(R.drawable.code_160x160, "Code");
-        CategoriesBean categoriesBean12 = new CategoriesBean(R.drawable.dragon_160x160, "Dragon");
+        CategoriesBean categoriesBean9 = new CategoriesBean(R.drawable.icon_appliances, "Applicances");
+        CategoriesBean categoriesBean10 = new CategoriesBean(R.drawable.icon_books, "Books");
+        CategoriesBean categoriesBean11 = new CategoriesBean(R.drawable.icon_clothing, "Clothing");
+        CategoriesBean categoriesBean12 = new CategoriesBean(R.drawable.icon_electronics, "Electronics");
+
+        CategoriesBean categoriesBean13 = new CategoriesBean(R.drawable.icon_furniture, "Furniture");
+        CategoriesBean categoriesBean14 = new CategoriesBean(R.drawable.icon_health, "Health");
+        CategoriesBean categoriesBean15 = new CategoriesBean(R.drawable.icon_books, "Books");
+        //CategoriesBean categoriesBean7 = new CategoriesBean(R.drawable.icon_jewellery, "Jewellery");
+        CategoriesBean categoriesBean16 = new CategoriesBean(R.drawable.icon_sports, "Sports");
 
         categoriesBeen.add(categoriesBean1);
         categoriesBeen.add(categoriesBean2);
@@ -61,6 +68,11 @@ public class CategoriesActivityFragment extends Fragment {
         categoriesBeen.add(categoriesBean10);
         categoriesBeen.add(categoriesBean11);
         categoriesBeen.add(categoriesBean12);
+
+        categoriesBeen.add(categoriesBean13);
+        categoriesBeen.add(categoriesBean14);
+        categoriesBeen.add(categoriesBean15);
+        categoriesBeen.add(categoriesBean16);
 
         return inflater.inflate(R.layout.fragment_categories, container, false);
     }

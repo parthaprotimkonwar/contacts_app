@@ -29,12 +29,13 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //removing the action bar
-        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        /*requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
 
         setContentView(R.layout.activity_categories);
         Toolbar toolbar = (Toolbar) findViewById(R.id.categoriesToolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setElevation(4.0F);
 
         Typeface pacificoFont = Typeface.createFromAsset(getAssets(),"fonts/Pacifico.ttf");
 
@@ -60,14 +61,15 @@ public class CategoriesActivity extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.categoriesMenuLocationNameSpinner);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
 
-
         List<String> locations = new ArrayList<>();
         locations.add("bangalore");
         locations.add("pune");
         locations.add("hydrabad");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);*/
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, locations);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter); // set the adapter to provide layout of rows and content
         //spinner.setOnItemSelectedListener(onItemSelectedListener);
         return true;
@@ -88,7 +90,7 @@ public class CategoriesActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+    /*@Override
     protected void onResume() {
         super.onResume();
 
@@ -100,5 +102,5 @@ public class CategoriesActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-    }
+    }*/
 }
