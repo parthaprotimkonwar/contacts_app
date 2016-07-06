@@ -1,4 +1,4 @@
-package com.contacts.contacts.ui.adapter.category;
+package com.contacts.ui.adapter.category;
 
 import android.app.Activity;
 import android.content.Context;

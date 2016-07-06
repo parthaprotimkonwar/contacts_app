@@ -1,4 +1,4 @@
-package com.contacts.contacts.ui.activity.category;
+package com.contacts.ui.activity.category;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -8,13 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.Spinner;
 
 import com.contacts.contacts.R;
-import com.contacts.contacts.ui.adapter.category.CategoryListAdapter;
-import com.contacts.contacts.ui.activity.contacts.ContactsActivity;
+import com.contacts.ui.adapter.category.CategoryListAdapter;
+import com.contacts.ui.activity.contacts.ContactsActivity;
 import com.contacts.db.beans.CategoriesBean;
 
 import java.util.ArrayList;

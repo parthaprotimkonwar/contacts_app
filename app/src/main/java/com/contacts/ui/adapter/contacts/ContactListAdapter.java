@@ -1,4 +1,4 @@
-package com.contacts.contacts.ui.adapter.contacts;
+package com.contacts.ui.adapter.contacts;
 
 import android.Manifest;
 import android.app.Activity;
@@ -16,7 +16,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.contacts.contacts.R;
-import com.contacts.contacts.ui.activity.contacts.ContactsActivity;
 import com.contacts.db.beans.ContactsBean;
 
 import java.util.List;
