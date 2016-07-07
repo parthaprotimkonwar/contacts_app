@@ -16,11 +16,13 @@ public class City extends Model{
 
     public City(){}
 
-    public City(String name, Double latitude, Double longitude, STATUS status){
+    public City(Long cityId, String name, Double latitude, Double longitude, STATUS status, Integer journalId){
+        this.cityId = cityId;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.status = status;
+        this.journalId = journalId;
     }
 
     @Column(name = "CITY_ID")
@@ -42,6 +44,24 @@ public class City extends Model{
     private Integer journalId;
 
     private List<AUser> userList;
+
+    /**
+     * Superimpose City
+     * @param cityId
+     * @param name
+     * @param latitude
+     * @param longitude
+     * @param status
+     * @param journalId
+     */
+    public void superimpose(Long cityId, String name, Double latitude, Double longitude, STATUS status, Integer journalId){
+        this.cityId = cityId;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.status = status;
+        this.journalId = journalId;
+    }
 
     public Long getCityId() {
         return cityId;

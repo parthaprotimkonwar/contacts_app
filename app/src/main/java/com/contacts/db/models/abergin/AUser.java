@@ -61,7 +61,8 @@ public class AUser extends Model{
 		this.userId = userId;
 	}
 
-	public AUser(USER_TYPE userType, String name, String email, String mobile, String password, byte[] imageBlob, Date lastLogin, Date createdOn, STATUS status, City city) {
+	public AUser(Long userId, USER_TYPE userType, String name, String email, String mobile, String password, byte[] imageBlob, Date lastLogin, Date createdOn, STATUS status, City city, Integer journalId) {
+		this.userId = userId;
 		this.userType = userType;
 		this.name = name;
 		this.email = email;
@@ -72,6 +73,22 @@ public class AUser extends Model{
 		this.createdOn = createdOn;
 		this.status = status;
 		this.city = city;
+		this.journalId = journalId;
+	}
+
+	public void superimpose(Long userId, USER_TYPE userType, String name, String email, String mobile, String password, byte[] imageBlob, Date lastLogin, Date createdOn, STATUS status, City city, Integer journalId) {
+		this.userId = userId;
+		this.userType = userType;
+		this.name = name;
+		this.email = email;
+		this.mobile = mobile;
+		this.password = password;
+		this.imageBlob = imageBlob;
+		this.lastLogin = lastLogin;
+		this.createdOn = createdOn;
+		this.status = status;
+		this.city = city;
+		this.journalId = journalId;
 	}
 
 	public Long getUserId() {

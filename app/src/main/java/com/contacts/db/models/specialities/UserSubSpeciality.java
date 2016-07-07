@@ -12,6 +12,7 @@ import com.contacts.db.models.abergin.AUser;
 @Table(name = "USER_SUB_SPECIALITY")
 public class UserSubSpeciality extends Model{
 
+
     @Column(name = "USER")
     private AUser user;
 
@@ -23,6 +24,20 @@ public class UserSubSpeciality extends Model{
 
     @Column(name = "JOURNAL_ID")
     private Integer journalId;
+
+    public UserSubSpeciality(AUser user, SubSpeciality subSpeciality, Integer price, Integer journalId) {
+        this.user = user;
+        this.subSpeciality = subSpeciality;
+        this.price = price;
+        this.journalId = journalId;
+    }
+
+    public void superimpose(AUser user, SubSpeciality subSpeciality, Integer price, Integer journalId) {
+        this.user = user;
+        this.subSpeciality = subSpeciality;
+        this.price = price;
+        this.journalId = journalId;
+    }
 
     public UserSubSpeciality() {
     }

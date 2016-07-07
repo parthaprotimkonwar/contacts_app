@@ -4,6 +4,7 @@ package com.contacts.rest.dto;
 import com.contacts.db.models.bean.places.CityBean;
 import com.contacts.db.models.bean.specialities.SpecialityBean;
 import com.contacts.db.models.bean.specialities.SubSpecialityBean;
+import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,10 +12,13 @@ import java.util.List;
 /**
  * Created by pkonwar on 7/4/2016.
  */
-public class FactoryResetDto implements Serializable{
+public class FactoryResetDto{
 
+    @Expose
     private List<CityBean> cityBeanList;                        // CITY List
+    @Expose
     private List<SpecialityBean> specialityBeanList;            // SPECIALITY List
+    @Expose
     private List<SubSpecialityBean> subSpecialityBeanList;      // SUB-SPECIALITY List
 
 

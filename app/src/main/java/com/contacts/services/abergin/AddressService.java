@@ -9,11 +9,11 @@ import com.contacts.db.models.abergin.Address;
  */
 public class AddressService {
 
-    public Address findAAddress(Long addressId) {
+    public static Address findAAddress(Long addressId) {
         return new Select().from(Address.class).where("ADDRESS_ID = ?", addressId).executeSingle();
     }
 
-    public Address findAddressForUser(Long userId) {
+    public static Address findAddressForUser(Long userId) {
         AUser user = AUserService.findAUser(userId);
         return new Select().from(Address.class).where("USER = ?", user.getId()).executeSingle();
     }

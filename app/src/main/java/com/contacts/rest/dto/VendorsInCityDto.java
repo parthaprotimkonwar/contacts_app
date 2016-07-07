@@ -3,6 +3,7 @@ package com.contacts.rest.dto;
 import com.contacts.db.models.bean.abergin.AUserBean;
 import com.contacts.db.models.bean.abergin.AddressBean;
 import com.contacts.db.models.bean.specialities.UserSubSpecialityBean;
+import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,8 +15,11 @@ import java.util.List;
 
 public class VendorsInCityDto implements Serializable{
 
+    @Expose
     private List<AUserBean> userBeanList;                                       //List of USERS
+    @Expose
     private List<AddressBean> addressBeanList;                                  //Address for the USERS
+    @Expose
     private List<UserSubSpecialityBean> userSubSpecialityBeanList;              //User's SPECIALITY
 
     public void addToUserBeanList(AUserBean userBean) {

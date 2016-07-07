@@ -48,7 +48,8 @@ public class Address extends Model{
 
 	public Address() {}
 
-	public Address(String addressHeading, String pincode, String address, String landmark, String phoneNo, String city, String state, String country,  Double longitude, Double latitude, AUser user) {
+	public Address(Long addressId, String addressHeading, String pincode, String address, String landmark, String phoneNo, String city, String state, String country,  Double longitude, Double latitude, AUser user, Integer journalId) {
+		this.addressId = addressId;
 		this.addressHeading = addressHeading;
 		this.pincode = pincode;
 		this.address = address;
@@ -60,6 +61,23 @@ public class Address extends Model{
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.user = user;
+		this.journalId = journalId;
+	}
+
+	public void superimpose(Long addressId, String addressHeading, String pincode, String address, String landmark, String phoneNo, String city, String state, String country,  Double longitude, Double latitude, AUser user, Integer journalId) {
+		this.addressId = addressId;
+		this.addressHeading = addressHeading;
+		this.pincode = pincode;
+		this.address = address;
+		this.landmark = landmark;
+		this.phoneNo = phoneNo;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.user = user;
+		this.journalId = journalId;
 	}
 
 	public Long getAddressId() {

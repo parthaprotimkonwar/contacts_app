@@ -13,9 +13,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.contacts.contacts.R;
+import com.contacts.rest.RestClient;
+import com.contacts.rest.dto.FactoryResetDto;
+import com.contacts.rest.dto.VendorsInCityDto;
+import com.contacts.rest.service.callbacks.FactoryResetCallback;
+import com.contacts.rest.service.callbacks.VendorsInCityCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
 
 public class CategoriesActivity extends AppCompatActivity {
 
@@ -27,6 +34,7 @@ public class CategoriesActivity extends AppCompatActivity {
         /*requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
 
+
         setContentView(R.layout.activity_categories);
         Toolbar toolbar = (Toolbar) findViewById(R.id.categoriesToolbar);
         setSupportActionBar(toolbar);
@@ -37,6 +45,16 @@ public class CategoriesActivity extends AppCompatActivity {
         TextView titleText = (TextView) toolbar.getChildAt(0);
         titleText.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.logo_font_size));
         titleText.setTypeface(pacificoFont);
+
+        //Call for factory reset
+        RestClient client = new RestClient();
+        Call<FactoryResetDto> factoryResetDtoCall = client.getCoreServices().factoryResetData();
+        factoryResetDtoCall.enqueue(new FactoryResetCallback());
+
+
+        Call<VendorsInCityDto> vendorsInCityDtoCall = client.getCoreServices().vendorsInCity(2l);
+        vendorsInCityDtoCall.enqueue(new VendorsInCityCallback());
+
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -16,11 +16,13 @@ public class SubSpeciality extends Model {
     public SubSpeciality() {
     }
 
-    public SubSpeciality(String subSpeciality, STATUS status, byte[] imageBlob, Speciality speciality) {
+    public SubSpeciality(Long subSpecialityId, String subSpeciality, STATUS status, byte[] imageBlob, Speciality speciality, Integer journalId) {
+        this.subSpecialityId = subSpecialityId;
         this.subSpeciality = subSpeciality;
         this.status = status;
         this.imageBlob = imageBlob;
         this.speciality = speciality;
+        this.journalId = journalId;
     }
 
     @Column(name = "SUB_SPECIALITY_ID")
@@ -42,6 +44,15 @@ public class SubSpeciality extends Model {
     private Integer journalId;
 
     private List<UserSubSpeciality> userSubSpecialityList;
+
+    public void superimpose(Long subSpecialityId, String subSpeciality, STATUS status, byte[] imageBlob, Speciality speciality, Integer journalId) {
+        this.subSpecialityId = subSpecialityId;
+        this.subSpeciality = subSpeciality;
+        this.status = status;
+        this.imageBlob = imageBlob;
+        this.speciality = speciality;
+        this.journalId = journalId;
+    }
 
     public Long getSubSpecialityId() {
         return subSpecialityId;
