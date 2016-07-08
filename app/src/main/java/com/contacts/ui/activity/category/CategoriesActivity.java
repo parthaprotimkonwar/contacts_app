@@ -34,7 +34,6 @@ public class CategoriesActivity extends AppCompatActivity {
         /*requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
 
-
         setContentView(R.layout.activity_categories);
         Toolbar toolbar = (Toolbar) findViewById(R.id.categoriesToolbar);
         setSupportActionBar(toolbar);

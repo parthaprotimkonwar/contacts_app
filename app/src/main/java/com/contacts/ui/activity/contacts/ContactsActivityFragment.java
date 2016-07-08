@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.contacts.contacts.R;
+import com.contacts.db.models.specialities.UserSubSpeciality;
+import com.contacts.services.specialities.UserSubSpecialityService;
 import com.contacts.ui.adapter.contacts.ContactListAdapter;
 import com.contacts.db.beans.ContactsBean;
+import com.contacts.ui.cache.DataBundle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +24,30 @@ import java.util.List;
 public class ContactsActivityFragment extends Fragment {
 
     List<ContactsBean> contactsBeanList;
-
+    List<UserSubSpeciality> userSubSpecialityList;
     public ContactsActivityFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Long subSpecialityId = DataBundle.getInstance().getSubSpecilityId();
+        userSubSpecialityList = UserSubSpecialityService.findAllUserSubSpeciality(subSpecialityId);
 
+        return inflater.inflate(R.layout.fragment_contacts, container, false);
+    }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        ContactListAdapter contactListAdapter = new ContactListAdapter(getActivity(), R.layout.adapter_contacts_lists, userSubSpecialityList);
+        ListView contactsListView = (ListView) getView().findViewById(R.id.contactsListView);
+        contactsListView.setAdapter(contactListAdapter);
+    }
+
+    private void cache() {
         contactsBeanList = new ArrayList<>();
         ContactsBean contactsBean1 = new ContactsBean("Raman Raghav", R.drawable.profile, 200, 9900065578L, 4);
         ContactsBean contactsBean2 = new ContactsBean("Sheena Bora", R.drawable.sheena_bora, 300, 9900065578L, 2);
@@ -69,17 +88,5 @@ public class ContactsActivityFragment extends Fragment {
         contactsBeanList.add(contactsBean13);
         contactsBeanList.add(contactsBean14);
         contactsBeanList.add(contactsBean15);
-
-        return inflater.inflate(R.layout.fragment_contacts, container, false);
-    }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        ContactListAdapter contactListAdapter = new ContactListAdapter(getActivity(), R.layout.adapter_contacts_lists, contactsBeanList);
-        ListView contactsListView = (ListView) getView().findViewById(R.id.contactsListView);
-        contactsListView.setAdapter(contactListAdapter);
     }
 }

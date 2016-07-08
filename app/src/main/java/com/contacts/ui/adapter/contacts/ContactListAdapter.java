@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
@@ -16,29 +18,30 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.contacts.contacts.R;
-import com.contacts.db.beans.ContactsBean;
+import com.contacts.db.models.abergin.AUser;
+import com.contacts.db.models.specialities.UserSubSpeciality;
 
 import java.util.List;
 
 /**
  * Created by pkonwar on 6/29/2016.
  */
-public class ContactListAdapter extends ArrayAdapter<ContactsBean> {
+public class ContactListAdapter extends ArrayAdapter<UserSubSpeciality> {
 
     Context context;
-    List<ContactsBean> contacts;
+    List<UserSubSpeciality> userSubSpecialityList;
 
-    public ContactListAdapter(Context context, int resource, List<ContactsBean> contacts) {
-        super(context, resource, contacts);
+    public ContactListAdapter(Context context, int resource, List<UserSubSpeciality> userSubSpecialityList) {
+        super(context, resource, userSubSpecialityList);
         this.context = context;
-        this.contacts = contacts;
+        this.userSubSpecialityList = userSubSpecialityList;
     }
 
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final ContactsBean contact = contacts.get(position);
-
+        final UserSubSpeciality userSubSpeciality = userSubSpecialityList.get(position);
+        AUser user = userSubSpeciality.getUser();
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.adapter_contacts_lists, null);
 
@@ -46,20 +49,26 @@ public class ContactListAdapter extends ArrayAdapter<ContactsBean> {
         TextView contactName = (TextView) view.findViewById(R.id.contactNameTextView);
         TextView price = (TextView) view.findViewById(R.id.contactPriceTextView);
         TextView yearsOfExp = (TextView) view.findViewById(R.id.contactYearsExpTextView);
-
         ImageView phoneIcon = (ImageView) view.findViewById(R.id.contactsPhoneIconImageView);
 
 
-        contactImageView.setImageResource(contact.getContactImageId());
-        contactName.setText(contact.getName());
-        price.setText(" ₹ " + contact.getPrice() + " ");
-        yearsOfExp.setText(contact.getYearsOfExperience() + "yrs Exp.");
+        //Image is present for a User
+        if(user.getImageBlob() != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(user.getImageBlob(), 0, user.getImageBlob().length);
+            contactImageView.setImageBitmap(bitmap);
+        } else {
+            contactImageView.setImageResource(R.drawable.profile);
+        }
+
+        contactName.setText(userSubSpeciality.getUser().getName());
+        price.setText(" ₹ " + userSubSpeciality.getPrice() + " ");
+        yearsOfExp.setText("1 yrs Exp.");
 
         phoneIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ContactsBean contactBean = getContactBean(view);
-                Long phoneNumber = contactBean.getContactNumber();
+                UserSubSpeciality userSubSpeciality = getUserSubSpeciality(view);
+                String phoneNumber = userSubSpeciality.getUser().getMobile();
 
                 String telephoneSyntax = "tel:09900059925";
                 System.out.println("Partha : Calling number : " + phoneNumber);
@@ -83,11 +92,11 @@ public class ContactListAdapter extends ArrayAdapter<ContactsBean> {
         return view;
     }
 
-    private ContactsBean getContactBean(View view) {
+    private UserSubSpeciality getUserSubSpeciality(View view) {
         View parentRow = (View) view.getParent();
         ListView listView = (ListView) parentRow.getParent();
         final int position = listView.getPositionForView(parentRow);
 
-        return contacts.get(position);
+        return userSubSpecialityList.get(position);
     }
 }

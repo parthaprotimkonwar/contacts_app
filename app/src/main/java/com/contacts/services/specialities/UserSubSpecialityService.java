@@ -6,6 +6,8 @@ import com.contacts.db.models.specialities.SubSpeciality;
 import com.contacts.db.models.specialities.UserSubSpeciality;
 import com.contacts.services.abergin.AUserService;
 
+import java.util.List;
+
 /**
  * Created by pkonwar on 7/8/2016.
  */
@@ -19,5 +21,10 @@ public class UserSubSpecialityService {
         AUser user = AUserService.findAUser(userId);
         SubSpeciality subSpeciality = SubSpecialityService.findASubSpeciality(subSpecialityId);
         return new Select().from(UserSubSpeciality.class).where("USER = ?", user.getId()).and("SUB_SPECIALITY = ?", subSpeciality.getId()).executeSingle();
+    }
+
+    public static List<UserSubSpeciality> findAllUserSubSpeciality(Long subSpecialityId) {
+        SubSpeciality subSpeciality = SubSpecialityService.findASubSpeciality(subSpecialityId);
+        return new Select().from(UserSubSpeciality.class).where("SUB_SPECIALITY = ?", subSpeciality.getId()).execute();
     }
 }

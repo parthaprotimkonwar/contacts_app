@@ -40,11 +40,11 @@ public class FactoryResetCallback implements Callback<FactoryResetDto> {
             City city = CityService.findACity(cityId);
             if(city == null) {
                 city = new City(bean.getCityId(), bean.getName(), bean.getLatitude(), bean.getLongitude(), bean.getStatus(), bean.getJournalId());
-                //city.save();
+                city.save();
                 System.out.println("CITY : " + city.getName() + " saved.");
             } else if(journalId == null || !journalId.equals(city.getJournalId())) {
                 city.superimpose(bean.getCityId(), bean.getName(), bean.getLatitude(), bean.getLongitude(), bean.getStatus(), bean.getJournalId());
-                //city.save();
+                city.save();
             }
         }
 
@@ -57,11 +57,11 @@ public class FactoryResetCallback implements Callback<FactoryResetDto> {
             Speciality speciality = SpecialityService.findASpeciality(specialityId);
             if(speciality == null) {
                 speciality = new Speciality(bean.getSpecialityId(), bean.getSpeciality(), bean.getStatus(), bean.getImageBlob(), bean.getJournalId());
-                //speciality.save();
+                speciality.save();
                 System.out.println("SPECIALITY : " + speciality.getSpeciality() + " saved.");
             } else if(journalId == null || !journalId.equals(speciality.getJournalId())) {
                 speciality.superimpose(bean.getSpecialityId(), bean.getSpeciality(), bean.getStatus(), bean.getImageBlob(), bean.getJournalId());
-                //speciality.save();
+                speciality.save();
             }
         }
 
@@ -75,12 +75,12 @@ public class FactoryResetCallback implements Callback<FactoryResetDto> {
             if(subSpeciality == null) {
                 Speciality speciality = SpecialityService.findASpeciality(bean.getSpecialityId());
                 subSpeciality = new SubSpeciality(bean.getSubSpecialityId(), bean.getSubSpeciality(), bean.getStatus(), bean.getImageBlob(), speciality, bean.getJournalId());
-                //subSpeciality.save();
+                subSpeciality.save();
                 System.out.println("SUB-SPECIALITY : " + subSpeciality.getSubSpeciality() + " saved.");
-            } else if(journalId != null || !journalId.equals(subSpeciality.getJournalId())) {
+            } else if(journalId == null || !journalId.equals(subSpeciality.getJournalId())) {
                 Speciality speciality = SpecialityService.findASpeciality(bean.getSpecialityId());
                 subSpeciality.superimpose(bean.getSubSpecialityId(), bean.getSubSpeciality(), bean.getStatus(), bean.getImageBlob(), speciality, bean.getJournalId());
-                //subSpeciality.save();
+                subSpeciality.save();
             }
         }
     }

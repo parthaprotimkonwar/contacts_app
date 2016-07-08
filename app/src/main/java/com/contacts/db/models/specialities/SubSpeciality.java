@@ -101,4 +101,12 @@ public class SubSpeciality extends Model {
     public void setUserSubSpecialityList(List<UserSubSpeciality> userSubSpecialityList) {
         this.userSubSpecialityList = userSubSpecialityList;
     }
+
+    public byte[] getImageBlob() {
+        return imageBlob;
+    }
+
+    public void setImageBlob(byte[] imageBlob) {
+        this.imageBlob = imageBlob;
+    }
 }

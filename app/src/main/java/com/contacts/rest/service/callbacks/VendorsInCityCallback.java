@@ -43,12 +43,12 @@ public class VendorsInCityCallback implements Callback<VendorsInCityDto> {
             if(user == null) {
                 City city = CityService.findACity(bean.getCityId());
                 user = new AUser(bean.getUserId(), bean.getUserType(), bean.getName(), bean.getEmail(), bean.getMobile(), bean.getPassword(), bean.getImageBlob(), bean.getLastLogin(), bean.getCreatedOn(), bean.getStatus(), city, bean.getJournalId());
-                //user.save();
+                user.save();
                 System.out.println("User saved");
             } else if(journalId == null || !journalId.equals(bean.getJournalId())) {
                 City city = CityService.findACity(bean.getCityId());
                 user.superimpose(bean.getUserId(), bean.getUserType(), bean.getName(), bean.getEmail(), bean.getMobile(), bean.getPassword(), bean.getImageBlob(), bean.getLastLogin(), bean.getCreatedOn(), bean.getStatus(), city, bean.getJournalId());
-                //user.save();
+                user.save();
             }
 
         }
@@ -64,12 +64,12 @@ public class VendorsInCityCallback implements Callback<VendorsInCityDto> {
             if(address == null) {
                 AUser user = AUserService.findAUser(bean.getUserId());
                 address = new Address(bean.getAddressId(), bean.getAddressHeading(), bean.getPincode(), bean.getAddress(), bean.getLandmark(), bean.getPhoneNo(),bean.getCity(), bean.getState(), bean.getCountry(), bean.getLongitude(), bean.getLatitude(), user, bean.getJournalId());
-                //address.save();
+                address.save();
                 System.out.println("Address saved");
             } else if(journalId == null || !journalId.equals(address.getJournalId())) {
                 AUser user = AUserService.findAUser(bean.getUserId());
                 address.superimpose(bean.getAddressId(), bean.getAddressHeading(), bean.getPincode(), bean.getAddress(), bean.getLandmark(), bean.getPhoneNo(),bean.getCity(), bean.getState(), bean.getCountry(), bean.getLongitude(), bean.getLatitude(), user, bean.getJournalId());
-                //address.save();
+                address.save();
             }
         }
 
@@ -87,17 +87,17 @@ public class VendorsInCityCallback implements Callback<VendorsInCityDto> {
 
             if(userSubSpeciality == null) {
                 userSubSpeciality = new UserSubSpeciality(user, subSpeciality, bean.getPrice(), journalId);
-                //userSubSpeciality.save();
+                userSubSpeciality.save();
                 System.out.println("User Sub Spec saved");
             } else if(journalId == null || !journalId.equals(bean.getJournalId())) {
                 userSubSpeciality.superimpose(user, subSpeciality, bean.getPrice(), journalId);
-                //userSubSpeciality.save();
+                userSubSpeciality.save();
             }
         }
     }
 
     @Override
     public void onFailure(Call<VendorsInCityDto> call, Throwable t) {
-
+        System.out.println("MAY DAY!! MAY DAY!!");
     }
 }

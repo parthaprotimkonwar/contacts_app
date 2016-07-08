@@ -57,4 +57,20 @@ public class UserSubSpeciality extends Model{
     public void setJournalId(Integer journalId) {
         this.journalId = journalId;
     }
+
+    public AUser getUser() {
+        return user;
+    }
+
+    public void setUser(AUser user) {
+        this.user = user;
+    }
+
+    public SubSpeciality getSubSpeciality() {
+        return subSpeciality;
+    }
+
+    public void setSubSpeciality(SubSpeciality subSpeciality) {
+        this.subSpeciality = subSpeciality;
+    }
 }
