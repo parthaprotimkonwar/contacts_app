@@ -8,16 +8,21 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.contacts.contacts.R;
+import com.contacts.db.models.places.City;
 import com.contacts.rest.RestClient;
 import com.contacts.rest.dto.FactoryResetDto;
 import com.contacts.rest.dto.VendorsInCityDto;
 import com.contacts.rest.service.callbacks.FactoryResetCallback;
 import com.contacts.rest.service.callbacks.VendorsInCityCallback;
+import com.contacts.services.places.CityService;
+import com.contacts.ui.listeners.contacts.CityListSpinnerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,18 +78,32 @@ public class CategoriesActivity extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.categoriesMenuLocationNameSpinner);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
 
-        List<String> locations = new ArrayList<>();
-        locations.add("bangalore");
+        List<City> cityList = CityService.cities();
+        List<String> cityNames = getCityNames(cityList);
+        /*locations.add("bangalore12");
         locations.add("pune");
         locations.add("hydrabad");
-
-        /*ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locations);*/
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, locations);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+*/
+        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, locations);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, cityNames);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //adapter.setDropDownViewResource(R.layout.adapter_spinner_dropdown);
         spinner.setAdapter(adapter); // set the adapter to provide layout of rows and content
-        //spinner.setOnItemSelectedListener(onItemSelectedListener);
+        spinner.setOnItemSelectedListener(new CityListSpinnerListener(cityList));
         return true;
+    }
+
+    /**
+     * Get City Names
+     * @param cityList
+     * @return
+     */
+    List<String> getCityNames(List<City> cityList) {
+        List<String> cityName = new ArrayList<>();
+        for(City city : cityList) {
+            cityName.add(city.getName());
+        }
+        return cityName;
     }
 
     @Override

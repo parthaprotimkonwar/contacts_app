@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.contacts.common.Util;
 import com.contacts.contacts.R;
 import com.contacts.db.models.abergin.AUser;
 import com.contacts.db.models.specialities.UserSubSpeciality;
@@ -51,18 +54,27 @@ public class ContactListAdapter extends ArrayAdapter<UserSubSpeciality> {
         TextView yearsOfExp = (TextView) view.findViewById(R.id.contactYearsExpTextView);
         ImageView phoneIcon = (ImageView) view.findViewById(R.id.contactsPhoneIconImageView);
 
+        String name = Util.capitalizeFirstLetterOfThisWord(userSubSpeciality.getUser().getName());
+        contactName.setText(name);
+        price.setText(" ₹ " + userSubSpeciality.getPrice() + " ");
+        yearsOfExp.setText("1 yrs Exp.");
 
-        //Image is present for a User
+        //Produces Image or an Default image for a User
         if(user.getImageBlob() != null) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(user.getImageBlob(), 0, user.getImageBlob().length);
             contactImageView.setImageBitmap(bitmap);
+            /*contactImageView.setImageResource(R.drawable.profile);*/
+            contactImageView.setVisibility(View.VISIBLE);
         } else {
-            contactImageView.setImageResource(R.drawable.profile);
+            //Show a default image for a user
+            TextView contactDefaultImageTv = (TextView) view.findViewById(R.id.contactDefaultImageText);
+            GradientDrawable bgShape = (GradientDrawable)contactDefaultImageTv.getBackground();
+            String contactBgcolor = Util.findASCIIColorCode(name);
+            bgShape.setColor(Color.parseColor(contactBgcolor));
+            String firstLetter = Util.firstLetterOfThisWord(name);
+            contactDefaultImageTv.setText(firstLetter);
+            contactDefaultImageTv.setVisibility(View.VISIBLE);
         }
-
-        contactName.setText(userSubSpeciality.getUser().getName());
-        price.setText(" ₹ " + userSubSpeciality.getPrice() + " ");
-        yearsOfExp.setText("1 yrs Exp.");
 
         phoneIcon.setOnClickListener(new View.OnClickListener() {
             @Override
